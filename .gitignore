@@ -1,0 +1,112 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Simulated Annealing specific files
+# Log files
+*.log
+psa_debug*.txt
+worker_*.log
+psa_fault_worker_*.log
+faulthandler_*.log
+*_log.csv
+out.txt
+err.txt
+
+# Checkpoint and save files
+save_dict*.pkl
+*.pkl
+
+# Archive directories (if they contain temporary results)
+*_archive/
+bwr_archive/
+
+# Simulation temporary files
+sim_files/
+
+# Excel temporary files
+~$*.xlsx
+~$*.xls
+
+# My Python cache
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+
+# bwr_bs run files
+bwr_bs/*
+
+# tsp run files
+tsp/agent*
+
