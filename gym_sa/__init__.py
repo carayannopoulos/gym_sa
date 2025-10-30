@@ -15,6 +15,8 @@ from .gym_psa import ParallelAnnealer
 from .tsp_env import TSPEnv
 from .utils import softmax, set_seed
 from .logger import CSVLogger
+from .gym_dsa import DistributedAnnealer
+from .sa_rolloutworker import SA_RolloutWorker
 
 # Import benchmark modules
 # from . import tsp_benchmark
@@ -27,6 +29,8 @@ __all__ = [
     "softmax",
     "set_seed",
     "CSVLogger",
+    "DistributedAnnealer",
+    "SA_RolloutWorker",
     # "tsp_benchmark",
     # "psa_benchmark",
 ]
