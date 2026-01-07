@@ -46,8 +46,8 @@ def _worker(
 ) -> None:
     # Import here to avoid a circular import
 
-    with open(f"worker_{os.getpid()}.log", "w") as f:
-        f.write(f"worker {os.getpid()} started\n")
+    # with open(f"worker_{os.getpid()}.log", "w") as f:
+    #     f.write(f"worker {os.getpid()} started\n")
 
     annealer = annealer_constructor.var()
     reset_info: Optional[dict[str, Any]] = {}
@@ -56,29 +56,29 @@ def _worker(
 
     while True:
         try:
-            with open(f"worker_{os.getpid()}.log", "a") as f:
-                f.write(f"=== WAITING FOR COMMAND ===\n")
-                f.flush()
+            # with open(f"worker_{os.getpid()}.log", "a") as f:
+            #     f.write(f"=== WAITING FOR COMMAND ===\n")
+            #     f.flush()
 
             cmd, data = receive_queue.get()
 
-            with open(f"worker_{os.getpid()}.log", "a") as f:
-                f.write(f"=== RECEIVED: {cmd} ===\n")
-                f.flush()
+            # with open(f"worker_{os.getpid()}.log", "a") as f:
+            #     f.write(f"=== RECEIVED: {cmd} ===\n")
+            #     f.flush()
 
             if cmd == "run_chain":
                 try:
                     result = _run_chain(annealer, data["n_steps"], data["seed"])
-                    with open(f"worker_{os.getpid()}.log", "a") as f:
-                        for r in result:
-                            f.write(f"{type(r)}--")
-                        f.write(f"\n")
+                    # with open(f"worker_{os.getpid()}.log", "a") as f:
+                    #     for r in result:
+                    #         f.write(f"{type(r)}--")
+                    #     f.write(f"\n")
                     send_queue.put(result)
 
                 except:
-                    with open(f"worker_{os.getpid()}.log", "a") as f:
-                        f.write(f"error in run_chain\n")
-                        traceback.print_exc(file=f)
+                    # with open(f"worker_{os.getpid()}.log", "a") as f:
+                    #     f.write(f"error in run_chain\n")
+                    #     traceback.print_exc(file=f)
                     send_queue.put(None)
 
             elif cmd == "reset":
@@ -86,15 +86,15 @@ def _worker(
                     annealer.reset()
                     send_queue.put(True)
                 except:
-                    with open(f"worker_{os.getpid()}.log", "a") as f:
-                        f.write(f"error in reset\n")
-                        traceback.print_exc(file=f)
+                    # with open(f"worker_{os.getpid()}.log", "a") as f:
+                    #     f.write(f"error in reset\n")
+                    #     traceback.print_exc(file=f)
                     send_queue.put(False)
 
             elif cmd == "set_state":
                 n += 1
-                with open(f"worker_{os.getpid()}.log", "a") as f:
-                    f.write(f"setting state for remote {n}\n")
+                # with open(f"worker_{os.getpid()}.log", "a") as f:
+                #     f.write(f"setting state for remote {n}\n")
                 try:
                     # with open(f"worker_{os.getpid()}.log", "a") as f:
                     #     f.write(f"setting state for remote {remote} {n}\n")
@@ -103,9 +103,9 @@ def _worker(
                     #     f.write(f"state set for remote {remote} {n}\n")
                     send_queue.put(True)
                 except:
-                    with open(f"worker_{os.getpid()}.log", "a") as f:
-                        f.write(f"error in set_state\n")
-                        traceback.print_exc(file=f)
+                    # with open(f"worker_{os.getpid()}.log", "a") as f:
+                    #     f.write(f"error in set_state\n")
+                    #     traceback.print_exc(file=f)
                     send_queue.put(False)
 
             elif cmd == "get_current_objective":
@@ -688,7 +688,7 @@ class ParallelAnnealer:
                             self.log_debug(f"temperature updated")
 
                     # clear the circular buffers (more efficient)
-                    # self.clear_accepted_energy_remote_chains()
+                    self.clear_accepted_energy_remote_chains()
                     self.log_debug(f"accepted energies cleared")
                     # set the temperature for each annealer
                     self.set_temperature_remote_chains(self.temperature)
@@ -799,9 +799,9 @@ class ParallelAnnealer:
         """Log global metrics to CSV file."""
         metrics = {
             "step": step,
-            "best_objective": np.round(self.global_best_objective, 2),
-            "avg_acceptance_rate": np.round(np.mean(acceptance_rates), 2),
-            "temperature": np.round(self.temperature, 2),
+            "best_objective": np.round(self.global_best_objective, 4),
+            "avg_acceptance_rate": np.round(np.mean(acceptance_rates), 4),
+            "temperature": np.round(self.temperature, 6),
             "runtime": np.round(time.time() - self.start_time, 2),
         }
         self.logger.log(metrics)

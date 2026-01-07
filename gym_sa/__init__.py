@@ -17,7 +17,9 @@ from .utils import softmax, set_seed
 from .logger import CSVLogger
 from .gym_dsa import DistributedAnnealer
 from .sa_rolloutworker import SA_RolloutWorker
-
+from .gym_dsa_v2 import DistributedAnnealer_batch
+from .job_manager import JobManager
+from .gym_dsa_mpi import DistributedAnnealer_MPI
 # Import benchmark modules
 # from . import tsp_benchmark
 # from . import psa_benchmark
@@ -31,6 +33,9 @@ __all__ = [
     "CSVLogger",
     "DistributedAnnealer",
     "SA_RolloutWorker",
+    "DistributedAnnealer_batch",
+    "JobManager",
+    "DistributedAnnealer_MPI",
     # "tsp_benchmark",
     # "psa_benchmark",
 ]

@@ -7,7 +7,7 @@ from .utils import softmax, set_seed
 from typing import Callable, Optional, Tuple, Any, List, Dict
 
 
-@ray.remote
+@ray.remote(num_cpus=0.05)
 class SA_RolloutWorker:
     def __init__(
         self,
@@ -181,13 +181,13 @@ class SA_RolloutWorker:
         self.best_objective = self.current_objective
 
     def set_state(self, state, objective):
-        self.log_debug(f"setting state in annealer {self.n_set_state}")
+        # self.log_debug(f"setting state in annealer {self.n_set_state}")
         self.state = deepcopy(state)
-        self.log_debug(f"state copied {self.n_set_state}")
+        # self.log_debug(f"state copied {self.n_set_state}")
         self.current_objective = objective
-        self.log_debug(f"objective set {self.n_set_state}")
+        # self.log_debug(f"objective set {self.n_set_state}")
         self.env.set_state(state, objective)
-        self.log_debug(f"state set in env {self.n_set_state}")
+        # self.log_debug(f"state set in env {self.n_set_state}")
         self.n_set_state += 1
 
     def set_temperature(self, temperature):
