@@ -109,4 +109,8 @@ bwr_bs/*
 
 # tsp run files
 tsp/agent*
-
+tsp/agent*/
+tsp/agent*/*
+tsp/scaling*
+tsp/scaling/*
+tsp/*.txt

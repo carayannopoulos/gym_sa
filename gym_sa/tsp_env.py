@@ -3,6 +3,7 @@ from copy import deepcopy
 import itertools
 import matplotlib.pyplot as plt
 import os
+import time
 
 
 class TSPEnv:
@@ -24,7 +25,6 @@ class TSPEnv:
         self.rank = rank
         self.agent_dir = f"agent_{self.rank}"
         os.makedirs(self.agent_dir, exist_ok=True)
-
 
         if "render_best_state" not in env_params:
             env_params["render_best_state"] = False
@@ -92,7 +92,9 @@ class TSPEnv:
             # Vectorized distance calculation using distance matrix
             # Create pairs of consecutive cities (including return to start)
             from_indices = state
-            to_indices = np.roll(state, -1)  # Shift by -1 to get next city, last city connects to first
+            to_indices = np.roll(
+                state, -1
+            )  # Shift by -1 to get next city, last city connects to first
 
             # Extract all distances at once
             distance = np.sum(self.distance_matrix[from_indices, to_indices])

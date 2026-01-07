@@ -1,0 +1,1054 @@
+[[3.74393517e+01 5.41209070e+02]
+ [6.12175951e+02 4.94316688e+02]
+ [3.81312338e+01 3.53148458e+02]
+ [5.34418081e+01 1.31484901e+02]
+ [1.43060635e+02 6.31720095e+02]
+ [6.89945127e+02 4.68535500e+02]
+ [1.12747882e+02 5.29417758e+02]
+ [1.41487586e+02 5.04818486e+02]
+ [6.61051390e+02 4.45937518e+02]
+ [9.87899037e+01 3.84592603e+02]
+ [6.97388170e+02 1.80396228e+02]
+ [5.36489419e+02 2.87227909e+02]
+ [1.92406732e+02 2.04394059e+01]
+ [2.82786526e+02 2.29800156e+02]
+ [2.40825173e+02 2.81514144e+02]
+ [2.46928132e+02 3.22461332e+02]
+ [6.49731322e+02 6.23331575e+01]
+ [3.52965856e+02 6.66787310e+02]
+ [6.33392368e+02 5.34939845e+02]
+ [4.88311799e+02 4.37486944e+02]
+ [1.41403929e+02 2.28432555e+02]
+ [1.73632613e+01 2.40240707e+02]
+ [3.97558645e+02 2.31359121e+02]
+ [5.65785378e+02 2.82385875e+02]
+ [4.75897539e+02 4.68539271e+02]
+ [3.22422457e+02 5.50316548e+02]
+ [3.97558663e+02 7.47588388e+01]
+ [6.72861834e+02 4.32882641e+02]
+ [5.71218968e+02 5.30261699e+02]
+ [1.04653117e+02 4.82822477e+02]
+ [3.56709839e+02 6.76477132e+01]
+ [4.00407026e+02 2.53679448e+02]
+ [2.82303624e+02 4.26838050e+02]
+ [5.87766988e+01 5.07171239e+02]
+ [1.89750622e+02 4.60381523e+02]
+ [6.59912412e+02 2.26628416e+02]
+ [6.39030764e+02 4.67230230e+02]
+ [4.15025836e+02 2.33304538e+02]
+ [5.47266202e+02 1.61658928e+02]
+ [6.16654790e+02 3.39340931e+02]
+ [4.94859243e+02 1.48121786e+02]
+ [6.29998081e+02 4.33454816e+02]
+ [4.71101431e+02 3.14221931e+02]
+ [1.38244051e+02 1.37167992e+02]
+ [9.15847557e+01 1.10020301e+02]
+ [3.90697281e+02 4.23977432e+02]
+ [5.65161782e+02 4.29159815e+02]
+ [5.45248980e+01 4.38551541e+02]
+ [3.34350833e+02 1.53796924e+02]
+ [5.31029103e+02 6.12387483e+02]
+ [4.75734591e+02 3.85784462e+02]
+ [2.28832522e+02 4.10446194e+02]
+ [5.78380535e+02 3.21330350e+02]
+ [3.58917057e+02 4.04467035e+02]
+ [4.86464855e+02 5.93042994e+02]
+ [3.43169371e+02 5.09312357e+02]
+ [5.30362697e+02 1.37688128e+02]
+ [4.98806548e+02 5.76210267e+02]
+ [2.24318272e+02 3.12467749e+02]
+ [5.95836073e+02 8.18130051e+01]
+ [6.61558872e+02 2.17045694e+02]
+ [4.36892045e+01 3.05472279e+02]
+ [7.94653452e+01 4.45964174e+02]
+ [2.10416325e+02 1.30715114e+02]
+ [4.32264229e+02 6.29409266e+02]
+ [6.23248716e+02 6.91892851e+01]
+ [4.36519474e+02 2.82935646e+02]
+ [5.94163266e+01 4.01280234e+01]
+ [6.30923007e+02 2.30342989e+02]
+ [5.79326554e+02 6.01035941e+02]
+ [1.17862451e+02 1.12979683e+02]
+ [2.97791257e+02 1.66313189e+02]
+ [2.27642704e+01 4.55534009e+02]
+ [2.59709581e+02 1.06199926e+01]
+ [3.42357987e+02 5.99388018e+02]
+ [1.00260950e+01 4.88931056e+02]
+ [3.15292606e+02 2.73227548e+02]
+ [2.20704492e+02 2.70081975e+02]
+ [1.92118606e+02 3.14183992e+02]
+ [2.71504272e+02 2.25292199e+02]
+ [5.30732001e+02 5.04067016e+02]
+ [4.25331442e+01 6.56364516e+02]
+ [3.96127479e+02 5.39464807e+02]
+ [1.18663147e+02 5.08712910e+02]
+ [3.95691388e+02 6.99537605e+02]
+ [5.59015711e+02 5.60886694e+02]
+ [2.26471036e+01 5.26247039e+02]
+ [1.35637709e+02 3.25840990e+02]
+ [1.41450701e+02 4.85247793e+02]
+ [3.96774130e+02 4.60755712e+02]
+ [8.77494563e+01 1.96170129e+01]
+ [3.50424564e+02 4.20653119e+02]
+ [2.16701082e+02 4.66481641e+02]
+ [1.30923774e+02 3.51149173e+02]
+ [7.26329857e+01 6.45785222e+02]
+ [1.44600295e+02 4.57422428e+02]
+ [2.12372508e+02 5.94921689e+02]
+ [4.99186786e+01 5.41435083e+02]
+ [6.56694353e+02 5.58110959e+02]
+ [1.76594162e+02 6.48523995e+02]
+ [5.00382520e+02 1.98742838e+02]
+ [6.34317868e+02 6.12829164e+02]
+ [5.97537373e+01 5.51632189e+02]
+ [1.52145765e+01 1.43044193e+02]
+ [2.83005438e+02 3.76443953e+02]
+ [1.46538900e+02 3.94231794e+01]
+ [1.01868561e+02 6.35098685e+02]
+ [5.88196854e+02 5.80594698e+02]
+ [4.57262863e+02 3.50016405e+02]
+ [5.37466368e+02 4.72584228e+02]
+ [2.69366910e+02 3.67476364e+02]
+ [2.39904538e+02 1.02629765e+02]
+ [8.84677500e+01 3.84050721e+02]
+ [6.58913369e+02 5.83957518e+02]
+ [9.77359146e+01 1.57455866e+02]
+ [5.06619138e+02 2.33002216e+02]
+ [5.00256690e+02 6.49136393e+01]
+ [5.94404857e+02 2.75874187e+02]
+ [6.62308147e+01 2.41317388e+01]
+ [5.98416299e+02 4.14555757e+02]
+ [1.72308833e+02 3.44396347e+02]
+ [2.99481285e+02 2.51829512e+02]
+ [3.03837989e+02 2.10526064e+01]
+ [1.97896927e+02 5.12388896e+02]
+ [5.60199568e+01 2.43066382e+02]
+ [2.55556618e+02 4.48865188e+02]
+ [6.08425611e+02 2.22542131e+02]
+ [7.02722703e+01 7.79227026e+01]
+ [3.98229900e+02 1.19557657e+02]
+ [6.35497024e+02 1.33322590e+02]
+ [3.78348456e+02 2.72290768e+02]
+ [4.84802966e+02 6.77073038e+02]
+ [2.78871088e+02 2.99930877e+02]
+ [3.81653730e+02 3.60333760e+02]
+ [5.57607071e+02 5.95318509e+02]
+ [2.49058975e+02 7.66595113e+01]
+ [5.62904879e+02 6.70038211e+02]
+ [3.98550437e+02 3.92649326e+02]
+ [5.90893972e+02 3.70741491e+02]
+ [5.58200800e+02 4.19881451e-01]
+ [4.61411471e+02 5.30525497e+02]
+ [3.54724288e+02 6.85404536e+02]
+ [1.93661130e+02 6.69743252e+02]
+ [3.52314081e+02 1.40327332e+02]
+ [3.08434571e+02 1.15205427e+02]
+ [2.99588137e+02 5.30588962e+02]
+ [3.34274876e+02 1.52149457e+02]
+ [6.90965859e+02 1.34579331e+02]
+ [4.80798124e+01 2.70968067e+02]
+ [9.16467648e+01 1.66354116e+02]]
+Case directory: /home/loukas/phd/core_design/so_algs/gym_sa/gym_sa/tsp/scaling/32chains
+n_chains: 32
+Iteration 1 of 1
+n_chains = 32
+len(self.send_queues) = 32
+len(self.processes) = 32
+Chain 0: send_queue=<multiprocessing.queues.Queue object at 0x7fb85c0ef750>, receive_queue=<multiprocessing.queues.Queue object at 0x7fb8564baf10>, process pid=2931095, alive=True
+Chain 1: send_queue=<multiprocessing.queues.Queue object at 0x7fb856466190>, receive_queue=<multiprocessing.queues.Queue object at 0x7fb8564bb590>, process pid=2931096, alive=True
+Chain 2: send_queue=<multiprocessing.queues.Queue object at 0x7fb856466e90>, receive_queue=<multiprocessing.queues.Queue object at 0x7fb8564bbc10>, process pid=2931097, alive=True
+Chain 3: send_queue=<multiprocessing.queues.Queue object at 0x7fb856467b90>, receive_queue=<multiprocessing.queues.Queue object at 0x7fb8564c02d0>, process pid=2931098, alive=True
+Chain 4: send_queue=<multiprocessing.queues.Queue object at 0x7fb856464390>, receive_queue=<multiprocessing.queues.Queue object at 0x7fb8564c0950>, process pid=2931099, alive=True
+Chain 5: send_queue=<multiprocessing.queues.Queue object at 0x7fb8564654d0>, receive_queue=<multiprocessing.queues.Queue object at 0x7fb8564c1010>, process pid=2931100, alive=True
+Chain 6: send_queue=<multiprocessing.queues.Queue object at 0x7fb8564661d0>, receive_queue=<multiprocessing.queues.Queue object at 0x7fb8564c1690>, process pid=2931101, alive=True
+Chain 7: send_queue=<multiprocessing.queues.Queue object at 0x7fb856466ed0>, receive_queue=<multiprocessing.queues.Queue object at 0x7fb8564c1d10>, process pid=2931102, alive=True
+Chain 8: send_queue=<multiprocessing.queues.Queue object at 0x7fb856467bd0>, receive_queue=<multiprocessing.queues.Queue object at 0x7fb8564c2390>, process pid=2931103, alive=True
+Chain 9: send_queue=<multiprocessing.queues.Queue object at 0x7fb856465450>, receive_queue=<multiprocessing.queues.Queue object at 0x7fb8564c0fd0>, process pid=2931104, alive=True
+Chain 10: send_queue=<multiprocessing.queues.Queue object at 0x7fb856469550>, receive_queue=<multiprocessing.queues.Queue object at 0x7fb8564c3050>, process pid=2931105, alive=True
+Chain 11: send_queue=<multiprocessing.queues.Queue object at 0x7fb85646a250>, receive_queue=<multiprocessing.queues.Queue object at 0x7fb8564c36d0>, process pid=2931106, alive=True
+Chain 12: send_queue=<multiprocessing.queues.Queue object at 0x7fb85646b050>, receive_queue=<multiprocessing.queues.Queue object at 0x7fb8564c3d50>, process pid=2931107, alive=True
+Chain 13: send_queue=<multiprocessing.queues.Queue object at 0x7fb85646bd50>, receive_queue=<multiprocessing.queues.Queue object at 0x7fb8564d0410>, process pid=2931108, alive=True
+Chain 14: send_queue=<multiprocessing.queues.Queue object at 0x7fb856468a90>, receive_queue=<multiprocessing.queues.Queue object at 0x7fb8564d0a90>, process pid=2931109, alive=True
+Chain 15: send_queue=<multiprocessing.queues.Queue object at 0x7fb856469790>, receive_queue=<multiprocessing.queues.Queue object at 0x7fb8564d1110>, process pid=2931110, alive=True
+Chain 16: send_queue=<multiprocessing.queues.Queue object at 0x7fb85646a490>, receive_queue=<multiprocessing.queues.Queue object at 0x7fb8564d1790>, process pid=2931111, alive=True
+Chain 17: send_queue=<multiprocessing.queues.Queue object at 0x7fb85646b190>, receive_queue=<multiprocessing.queues.Queue object at 0x7fb8564d1e10>, process pid=2931112, alive=True
+Chain 18: send_queue=<multiprocessing.queues.Queue object at 0x7fb856470890>, receive_queue=<multiprocessing.queues.Queue object at 0x7fb8564d2490>, process pid=2931113, alive=True
+Chain 19: send_queue=<multiprocessing.queues.Queue object at 0x7fb856471590>, receive_queue=<multiprocessing.queues.Queue object at 0x7fb8564d2b10>, process pid=2931114, alive=True
+Chain 20: send_queue=<multiprocessing.queues.Queue object at 0x7fb856472050>, receive_queue=<multiprocessing.queues.Queue object at 0x7fb8564d3190>, process pid=2931115, alive=True
+Chain 21: send_queue=<multiprocessing.queues.Queue object at 0x7fb8564726d0>, receive_queue=<multiprocessing.queues.Queue object at 0x7fb8564d3810>, process pid=2931116, alive=True
+Chain 22: send_queue=<multiprocessing.queues.Queue object at 0x7fb856472d90>, receive_queue=<multiprocessing.queues.Queue object at 0x7fb8564d3e90>, process pid=2931120, alive=True
+Chain 23: send_queue=<multiprocessing.queues.Queue object at 0x7fb856473410>, receive_queue=<multiprocessing.queues.Queue object at 0x7fb8564dc550>, process pid=2931259, alive=True
+Chain 24: send_queue=<multiprocessing.queues.Queue object at 0x7fb856473ad0>, receive_queue=<multiprocessing.queues.Queue object at 0x7fb8564dcbd0>, process pid=2931307, alive=True
+Chain 25: send_queue=<multiprocessing.queues.Queue object at 0x7fb8564b8190>, receive_queue=<multiprocessing.queues.Queue object at 0x7fb8564dd290>, process pid=2931322, alive=True
+Chain 26: send_queue=<multiprocessing.queues.Queue object at 0x7fb8564b8810>, receive_queue=<multiprocessing.queues.Queue object at 0x7fb8564dda10>, process pid=2931323, alive=True
+Chain 27: send_queue=<multiprocessing.queues.Queue object at 0x7fb8564b8e90>, receive_queue=<multiprocessing.queues.Queue object at 0x7fb8564de190>, process pid=2931370, alive=True
+Chain 28: send_queue=<multiprocessing.queues.Queue object at 0x7fb8564b9510>, receive_queue=<multiprocessing.queues.Queue object at 0x7fb8564de910>, process pid=2931371, alive=True
+Chain 29: send_queue=<multiprocessing.queues.Queue object at 0x7fb8564b9b90>, receive_queue=<multiprocessing.queues.Queue object at 0x7fb8564df090>, process pid=2931490, alive=True
+Chain 30: send_queue=<multiprocessing.queues.Queue object at 0x7fb8564ba210>, receive_queue=<multiprocessing.queues.Queue object at 0x7fb8564df810>, process pid=2931520, alive=True
+Chain 31: send_queue=<multiprocessing.queues.Queue object at 0x7fb8564ba890>, receive_queue=<multiprocessing.queues.Queue object at 0x7fb8564dff90>, process pid=2931521, alive=True
+remote chains time: 2.0259547233581543
+set states time: 0.04718422889709473
+Step 1 / 201
+Best objective: -49251.66969505079
+Avg acceptance rate: 0.7078125
+Temperature: 1048.3638623066506
+Runtime: 2.112910509109497
+remote chains time: 2.0237014293670654
+set states time: 0.046242475509643555
+Step 2 / 201
+Best objective: -47147.39060635285
+Avg acceptance rate: 0.7984375
+Temperature: 606.5929406633484
+Runtime: 4.223201513290405
+remote chains time: 2.0246028900146484
+set states time: 0.05142855644226074
+Step 3 / 201
+Best objective: -45464.41260724937
+Avg acceptance rate: 0.7921875
+Temperature: 499.5983479050609
+Runtime: 6.339827537536621
+remote chains time: 2.0253653526306152
+set states time: 0.04470562934875488
+Step 4 / 201
+Best objective: -43698.873955479896
+Avg acceptance rate: 0.7834375
+Temperature: 471.5417206735528
+Runtime: 8.45055603981018
+remote chains time: 2.0235257148742676
+set states time: 0.043588876724243164
+Step 5 / 201
+Best objective: -42167.1255962303
+Avg acceptance rate: 0.770625
+Temperature: 423.16818403105015
+Runtime: 10.557837009429932
+remote chains time: 2.0247409343719482
+set states time: 0.04580068588256836
+Step 6 / 201
+Best objective: -40871.55099265308
+Avg acceptance rate: 0.7715624999999999
+Temperature: 381.521438075405
+Runtime: 12.668384552001953
+remote chains time: 2.0232903957366943
+set states time: 0.04590106010437012
+Step 7 / 201
+Best objective: -40040.317113679266
+Avg acceptance rate: 0.7168749999999999
+Temperature: 356.5409056157838
+Runtime: 14.777711629867554
+remote chains time: 2.0281476974487305
+set states time: 0.04365825653076172
+Step 8 / 201
+Best objective: -38494.33927277231
+Avg acceptance rate: 0.6896875
+Temperature: 334.3513617866265
+Runtime: 16.88977360725403
+remote chains time: 2.025343179702759
+set states time: 0.04348254203796387
+Step 9 / 201
+Best objective: -37451.28801440024
+Avg acceptance rate: 0.6575
+Temperature: 319.8179025234954
+Runtime: 18.99801731109619
+remote chains time: 2.030158519744873
+set states time: 0.044063568115234375
+Step 10 / 201
+Best objective: -36238.11273500304
+Avg acceptance rate: 0.6328125
+Temperature: 307.1191048739039
+Runtime: 21.11132502555847
+remote chains time: 2.0250587463378906
+set states time: 0.04363679885864258
+Step 11 / 201
+Best objective: -35413.20156875634
+Avg acceptance rate: 0.5943749999999999
+Temperature: 286.41572722653723
+Runtime: 23.220215320587158
+remote chains time: 2.0252883434295654
+set states time: 0.04280686378479004
+Step 12 / 201
+Best objective: -34067.49509462667
+Avg acceptance rate: 0.5884375
+Temperature: 276.02841268082557
+Runtime: 25.32809805870056
+remote chains time: 2.0298855304718018
+set states time: 0.04332447052001953
+Step 13 / 201
+Best objective: -32678.2043522308
+Avg acceptance rate: 0.5603125
+Temperature: 255.61043163735638
+Runtime: 27.441779851913452
+remote chains time: 2.025914192199707
+set states time: 0.044130802154541016
+Step 14 / 201
+Best objective: -31673.453577096625
+Avg acceptance rate: 0.5296875000000001
+Temperature: 245.67813144997646
+Runtime: 29.55191707611084
+remote chains time: 2.030494451522827
+set states time: 0.04436182975769043
+Step 15 / 201
+Best objective: -30654.481634214004
+Avg acceptance rate: 0.495
+Temperature: 233.20269970651637
+Runtime: 31.66734004020691
+remote chains time: 2.025560140609741
+set states time: 0.045603036880493164
+Step 16 / 201
+Best objective: -30011.72942876879
+Avg acceptance rate: 0.473125
+Temperature: 219.70374063830673
+Runtime: 33.77920150756836
+remote chains time: 2.026041269302368
+set states time: 0.04419279098510742
+Step 17 / 201
+Best objective: -29560.951148560882
+Avg acceptance rate: 0.4428125
+Temperature: 207.65330577818207
+Runtime: 35.89095902442932
+remote chains time: 2.0256941318511963
+set states time: 0.045116424560546875
+Step 18 / 201
+Best objective: -28954.346937032158
+Avg acceptance rate: 0.4159375
+Temperature: 195.32715918641009
+Runtime: 38.003679037094116
+remote chains time: 2.0251498222351074
+set states time: 0.04352927207946777
+Step 19 / 201
+Best objective: -28213.64733278162
+Avg acceptance rate: 0.40218750000000003
+Temperature: 183.3054850824822
+Runtime: 40.112367153167725
+remote chains time: 2.031831741333008
+set states time: 0.04355216026306152
+Step 20 / 201
+Best objective: -27269.24303630412
+Avg acceptance rate: 0.3815625
+Temperature: 172.9351046938663
+Runtime: 42.228593587875366
+remote chains time: 2.026662826538086
+set states time: 0.044881582260131836
+Step 21 / 201
+Best objective: -26519.878184953
+Avg acceptance rate: 0.3690625
+Temperature: 169.2214762592251
+Runtime: 44.34070134162903
+remote chains time: 2.0255327224731445
+set states time: 0.04341697692871094
+Step 22 / 201
+Best objective: -25955.019746282145
+Avg acceptance rate: 0.33968750000000003
+Temperature: 163.99591114799884
+Runtime: 46.448994636535645
+remote chains time: 2.026740550994873
+set states time: 0.04424786567687988
+Step 23 / 201
+Best objective: -25381.606622058272
+Avg acceptance rate: 0.3265625
+Temperature: 156.47210207038773
+Runtime: 48.55888533592224
+remote chains time: 2.0253093242645264
+set states time: 0.055207014083862305
+Step 24 / 201
+Best objective: -24839.38436256991
+Avg acceptance rate: 0.31156249999999996
+Temperature: 150.99573198810316
+Runtime: 50.67991805076599
+remote chains time: 2.0259227752685547
+set states time: 0.045700788497924805
+Step 25 / 201
+Best objective: -24303.883422077284
+Avg acceptance rate: 0.299375
+Temperature: 145.52162387315866
+Runtime: 52.7936737537384
+remote chains time: 2.0261683464050293
+set states time: 0.042461395263671875
+Step 26 / 201
+Best objective: -23447.4524626854
+Avg acceptance rate: 0.279375
+Temperature: 141.37806132334345
+Runtime: 54.900811433792114
+remote chains time: 2.0279228687286377
+set states time: 0.04454636573791504
+Step 27 / 201
+Best objective: -22800.895750549113
+Avg acceptance rate: 0.26937500000000003
+Temperature: 135.83426577384398
+Runtime: 57.014790534973145
+remote chains time: 2.027226209640503
+set states time: 0.04326319694519043
+Step 28 / 201
+Best objective: -22605.99846922815
+Avg acceptance rate: 0.253125
+Temperature: 125.61319691380756
+Runtime: 59.12614893913269
+remote chains time: 2.0275580883026123
+set states time: 0.044503211975097656
+Step 29 / 201
+Best objective: -22145.312204810198
+Avg acceptance rate: 0.2396875
+Temperature: 121.66622374049447
+Runtime: 61.23879075050354
+remote chains time: 2.027172565460205
+set states time: 0.04355597496032715
+Step 30 / 201
+Best objective: -21675.940332278755
+Avg acceptance rate: 0.22531249999999997
+Temperature: 116.97997995388508
+Runtime: 63.35109090805054
+remote chains time: 2.0270535945892334
+set states time: 0.04434370994567871
+Step 31 / 201
+Best objective: -21330.38191007072
+Avg acceptance rate: 0.21531250000000002
+Temperature: 113.93578639552938
+Runtime: 65.46269726753235
+remote chains time: 2.0335135459899902
+set states time: 0.04368758201599121
+Step 32 / 201
+Best objective: -20881.138053495797
+Avg acceptance rate: 0.2075
+Temperature: 104.91927376351622
+Runtime: 67.58133602142334
+remote chains time: 2.026822090148926
+set states time: 0.04387664794921875
+Step 33 / 201
+Best objective: -20482.72584553827
+Avg acceptance rate: 0.1959375
+Temperature: 99.07298321822711
+Runtime: 69.69179010391235
+remote chains time: 2.0272397994995117
+set states time: 0.044028520584106445
+Step 34 / 201
+Best objective: -19982.22976503536
+Avg acceptance rate: 0.1803125
+Temperature: 95.93100110000226
+Runtime: 71.80346488952637
+remote chains time: 2.0286481380462646
+set states time: 0.04193711280822754
+Step 35 / 201
+Best objective: -19673.72336552511
+Avg acceptance rate: 0.1753125
+Temperature: 91.25670959140605
+Runtime: 73.91352486610413
+remote chains time: 2.029442310333252
+set states time: 0.04383254051208496
+Step 36 / 201
+Best objective: -19196.740267508165
+Avg acceptance rate: 0.1690625
+Temperature: 88.45084578372673
+Runtime: 76.02766871452332
+remote chains time: 2.027703285217285
+set states time: 0.043645381927490234
+Step 37 / 201
+Best objective: -18990.35964203174
+Avg acceptance rate: 0.1575
+Temperature: 84.98724909158418
+Runtime: 78.13872623443604
+remote chains time: 2.027076482772827
+set states time: 0.04313778877258301
+Step 38 / 201
+Best objective: -18562.170341375415
+Avg acceptance rate: 0.154375
+Temperature: 83.2512953048326
+Runtime: 80.24945068359375
+remote chains time: 2.026174545288086
+set states time: 0.044274330139160156
+Step 39 / 201
+Best objective: -18263.12210346845
+Avg acceptance rate: 0.1453125
+Temperature: 81.03032746237459
+Runtime: 82.36125302314758
+remote chains time: 2.0265960693359375
+set states time: 0.04321789741516113
+Step 40 / 201
+Best objective: -17831.754139772893
+Avg acceptance rate: 0.1403125
+Temperature: 79.17208671324309
+Runtime: 84.47280240058899
+remote chains time: 2.0309720039367676
+set states time: 0.043677330017089844
+Step 41 / 201
+Best objective: -17577.773167884254
+Avg acceptance rate: 0.13125
+Temperature: 73.42970895854423
+Runtime: 86.58698916435242
+remote chains time: 2.0244767665863037
+set states time: 0.04284191131591797
+Step 42 / 201
+Best objective: -17382.3018327353
+Avg acceptance rate: 0.1271875
+Temperature: 69.33204378960748
+Runtime: 88.69548892974854
+remote chains time: 2.0272746086120605
+set states time: 0.04364585876464844
+Step 43 / 201
+Best objective: -17125.35683805353
+Avg acceptance rate: 0.1175
+Temperature: 67.39412113375117
+Runtime: 90.80758380889893
+remote chains time: 2.0343265533447266
+set states time: 0.04519295692443848
+Step 44 / 201
+Best objective: -16761.75832552732
+Avg acceptance rate: 0.1190625
+Temperature: 66.0765461903085
+Runtime: 92.9262912273407
+remote chains time: 2.0276577472686768
+set states time: 0.04407691955566406
+Step 45 / 201
+Best objective: -16525.04008251772
+Avg acceptance rate: 0.11031250000000001
+Temperature: 65.0819937698256
+Runtime: 95.03887152671814
+remote chains time: 2.0319299697875977
+set states time: 0.04474496841430664
+Step 46 / 201
+Best objective: -16273.54606002523
+Avg acceptance rate: 0.10343750000000002
+Temperature: 63.82798419526449
+Runtime: 97.15558886528015
+remote chains time: 2.0259478092193604
+set states time: 0.04461097717285156
+Step 47 / 201
+Best objective: -16096.691820613445
+Avg acceptance rate: 0.09531250000000001
+Temperature: 56.68256244315793
+Runtime: 99.26501870155334
+remote chains time: 2.0296366214752197
+set states time: 0.0452115535736084
+Step 48 / 201
+Best objective: -15796.667601281817
+Avg acceptance rate: 0.091875
+Temperature: 55.965738925713055
+Runtime: 101.38022017478943
+remote chains time: 2.02870512008667
+set states time: 0.043309688568115234
+Step 49 / 201
+Best objective: -15588.432414434476
+Avg acceptance rate: 0.085625
+Temperature: 53.18331082950636
+Runtime: 103.49367475509644
+remote chains time: 2.027430534362793
+set states time: 0.04604983329772949
+Step 50 / 201
+Best objective: -15437.56088903539
+Avg acceptance rate: 0.08625000000000001
+Temperature: 52.36926282466557
+Runtime: 105.60797023773193
+remote chains time: 2.027707815170288
+set states time: 0.04660844802856445
+Step 51 / 201
+Best objective: -15167.636076314959
+Avg acceptance rate: 0.084375
+Temperature: 51.71459103362124
+Runtime: 107.72391963005066
+remote chains time: 2.0283572673797607
+set states time: 0.0459747314453125
+Step 52 / 201
+Best objective: -15000.976086829061
+Avg acceptance rate: 0.08124999999999999
+Temperature: 49.926888809136344
+Runtime: 109.83955216407776
+remote chains time: 2.0316832065582275
+set states time: 0.04639792442321777
+Step 53 / 201
+Best objective: -14821.390714201432
+Avg acceptance rate: 0.0784375
+Temperature: 49.19970312891635
+Runtime: 111.96051478385925
+remote chains time: 2.02833890914917
+set states time: 0.04294228553771973
+Step 54 / 201
+Best objective: -14662.159153845505
+Avg acceptance rate: 0.07250000000000001
+Temperature: 47.279129328419785
+Runtime: 114.07108879089355
+remote chains time: 2.0289766788482666
+set states time: 0.04223513603210449
+Step 55 / 201
+Best objective: -14502.745609624184
+Avg acceptance rate: 0.066875
+Temperature: 46.88330835127422
+Runtime: 116.1832389831543
+remote chains time: 2.026585340499878
+set states time: 0.04534196853637695
+Step 56 / 201
+Best objective: -14326.521495764177
+Avg acceptance rate: 0.0646875
+Temperature: 45.106186570835064
+Runtime: 118.29723167419434
+remote chains time: 2.0269358158111572
+set states time: 0.04387307167053223
+Step 57 / 201
+Best objective: -14145.388988530061
+Avg acceptance rate: 0.06375
+Temperature: 44.15839756438619
+Runtime: 120.40797805786133
+remote chains time: 2.031830310821533
+set states time: 0.04241752624511719
+Step 58 / 201
+Best objective: -14019.35331906902
+Avg acceptance rate: 0.060000000000000005
+Temperature: 42.502997518169835
+Runtime: 122.52321410179138
+remote chains time: 2.027820348739624
+set states time: 0.04588174819946289
+Step 59 / 201
+Best objective: -13928.755168974323
+Avg acceptance rate: 0.06
+Temperature: 40.43823080575258
+Runtime: 124.63683652877808
+remote chains time: 2.030167818069458
+set states time: 0.04478287696838379
+Step 60 / 201
+Best objective: -13679.237320337335
+Avg acceptance rate: 0.05625
+Temperature: 40.026264761309264
+Runtime: 126.75186848640442
+remote chains time: 2.0284857749938965
+set states time: 0.04335784912109375
+Step 61 / 201
+Best objective: -13534.69324559614
+Avg acceptance rate: 0.053125000000000006
+Temperature: 38.921663833178094
+Runtime: 128.8642008304596
+remote chains time: 2.0290019512176514
+set states time: 0.04575014114379883
+Step 62 / 201
+Best objective: -13420.177000254691
+Avg acceptance rate: 0.0490625
+Temperature: 38.30445399081114
+Runtime: 130.97821950912476
+remote chains time: 2.0273683071136475
+set states time: 0.044977664947509766
+Step 63 / 201
+Best objective: -13290.191946400311
+Avg acceptance rate: 0.051250000000000004
+Temperature: 37.64192360774963
+Runtime: 133.09068703651428
+remote chains time: 2.026521682739258
+set states time: 0.04361557960510254
+Step 64 / 201
+Best objective: -13141.034280561042
+Avg acceptance rate: 0.0490625
+Temperature: 36.267205855501665
+Runtime: 135.20245051383972
+remote chains time: 2.0319173336029053
+set states time: 0.04528069496154785
+Step 65 / 201
+Best objective: -13036.974709136173
+Avg acceptance rate: 0.049687499999999996
+Temperature: 35.84349358399698
+Runtime: 137.31966400146484
+remote chains time: 2.028093099594116
+set states time: 0.047795772552490234
+Step 66 / 201
+Best objective: -12948.28930897854
+Avg acceptance rate: 0.0484375
+Temperature: 35.51203456867985
+Runtime: 139.43552994728088
+remote chains time: 2.0284764766693115
+set states time: 0.04416370391845703
+Step 67 / 201
+Best objective: -12843.622956357623
+Avg acceptance rate: 0.04875
+Temperature: 34.96413808335275
+Runtime: 141.5475137233734
+remote chains time: 2.0269699096679688
+set states time: 0.042685508728027344
+Step 68 / 201
+Best objective: -12688.418188311083
+Avg acceptance rate: 0.045
+Temperature: 34.253313516141084
+Runtime: 143.65696740150452
+remote chains time: 2.0272998809814453
+set states time: 0.04206705093383789
+Step 69 / 201
+Best objective: -12463.27861833253
+Avg acceptance rate: 0.0421875
+Temperature: 34.10574392461601
+Runtime: 145.76654028892517
+remote chains time: 2.033308982849121
+set states time: 0.04402470588684082
+Step 70 / 201
+Best objective: -12400.288680196893
+Avg acceptance rate: 0.0415625
+Temperature: 33.281175343380255
+Runtime: 147.88305568695068
+remote chains time: 2.0259742736816406
+set states time: 0.043215036392211914
+Step 71 / 201
+Best objective: -12273.201980620837
+Avg acceptance rate: 0.0396875
+Temperature: 32.932937796746415
+Runtime: 149.99300503730774
+remote chains time: 2.028650999069214
+set states time: 0.04553961753845215
+Step 72 / 201
+Best objective: -12122.314115913457
+Avg acceptance rate: 0.0378125
+Temperature: 32.715848051407484
+Runtime: 152.10781908035278
+remote chains time: 2.0279507637023926
+set states time: 0.043071746826171875
+Step 73 / 201
+Best objective: -12032.811164234769
+Avg acceptance rate: 0.0346875
+Temperature: 31.995928347217337
+Runtime: 154.21871304512024
+remote chains time: 2.0285816192626953
+set states time: 0.045105934143066406
+Step 74 / 201
+Best objective: -11922.980225112005
+Avg acceptance rate: 0.034375
+Temperature: 31.292766748597245
+Runtime: 156.34243202209473
+remote chains time: 2.0279150009155273
+set states time: 0.04275345802307129
+Step 75 / 201
+Best objective: -11850.46677516122
+Avg acceptance rate: 0.02875
+Temperature: 30.679253551183372
+Runtime: 158.45353841781616
+remote chains time: 2.029064416885376
+set states time: 0.04404044151306152
+Step 76 / 201
+Best objective: -11438.302832680729
+Avg acceptance rate: 0.0278125
+Temperature: 30.637154375116236
+Runtime: 160.56709146499634
+remote chains time: 2.033071279525757
+set states time: 0.04410672187805176
+Step 77 / 201
+Best objective: -11347.475692842661
+Avg acceptance rate: 0.029375000000000002
+Temperature: 30.341590581733136
+Runtime: 162.6853973865509
+remote chains time: 2.0285208225250244
+set states time: 0.0435945987701416
+Step 78 / 201
+Best objective: -11282.501166215225
+Avg acceptance rate: 0.030625
+Temperature: 29.79318166967114
+Runtime: 164.79817843437195
+remote chains time: 2.0282340049743652
+set states time: 0.043321847915649414
+Step 79 / 201
+Best objective: -11142.105881598132
+Avg acceptance rate: 0.0303125
+Temperature: 29.510119331336913
+Runtime: 166.91099572181702
+remote chains time: 2.0334582328796387
+set states time: 0.04605674743652344
+Step 80 / 201
+Best objective: -11052.970851873844
+Avg acceptance rate: 0.034375
+Temperature: 28.98758988687157
+Runtime: 169.03139996528625
+remote chains time: 2.0276107788085938
+set states time: 0.04353642463684082
+Step 81 / 201
+Best objective: -10837.758537174801
+Avg acceptance rate: 0.0334375
+Temperature: 28.879836395835333
+Runtime: 171.1430561542511
+remote chains time: 2.026806116104126
+set states time: 0.04392099380493164
+Step 82 / 201
+Best objective: -10726.90103996246
+Avg acceptance rate: 0.0334375
+Temperature: 28.63863120870654
+Runtime: 173.25485110282898
+remote chains time: 2.028204917907715
+set states time: 0.044029951095581055
+Step 83 / 201
+Best objective: -10590.195732970835
+Avg acceptance rate: 0.0309375
+Temperature: 28.24094337356707
+Runtime: 175.36795234680176
+remote chains time: 2.027062177658081
+set states time: 0.055838584899902344
+Step 84 / 201
+Best objective: -10456.972448011253
+Avg acceptance rate: 0.03
+Temperature: 28.05622738057566
+Runtime: 177.4905297756195
+remote chains time: 2.028186082839966
+set states time: 0.04701638221740723
+Step 85 / 201
+Best objective: -10423.874636861789
+Avg acceptance rate: 0.027187500000000003
+Temperature: 27.115785510182334
+Runtime: 179.60648679733276
+remote chains time: 2.0273361206054688
+set states time: 0.043523311614990234
+Step 86 / 201
+Best objective: -10355.320816264884
+Avg acceptance rate: 0.0265625
+Temperature: 27.008606309301374
+Runtime: 181.71674871444702
+remote chains time: 2.026369333267212
+set states time: 0.045670270919799805
+Step 87 / 201
+Best objective: -10240.54623681021
+Avg acceptance rate: 0.023125
+Temperature: 26.897681716324325
+Runtime: 183.82904887199402
+remote chains time: 2.0253729820251465
+set states time: 0.04446744918823242
+Step 88 / 201
+Best objective: -10136.222674478377
+Avg acceptance rate: 0.026875000000000003
+Temperature: 26.582771201004963
+Runtime: 185.94023633003235
+remote chains time: 2.0303759574890137
+set states time: 0.045545101165771484
+Step 89 / 201
+Best objective: -10051.000617178566
+Avg acceptance rate: 0.026562499999999996
+Temperature: 25.96747306303399
+Runtime: 188.05706763267517
+remote chains time: 2.0284364223480225
+set states time: 0.04404091835021973
+Step 90 / 201
+Best objective: -9959.922475699474
+Avg acceptance rate: 0.025
+Temperature: 25.917698202778134
+Runtime: 190.1707878112793
+remote chains time: 2.026454448699951
+set states time: 0.04438591003417969
+Step 91 / 201
+Best objective: -9858.938996892455
+Avg acceptance rate: 0.024375
+Temperature: 25.52122852068282
+Runtime: 192.28093934059143
+remote chains time: 2.0339365005493164
+set states time: 0.04430437088012695
+Step 92 / 201
+Best objective: -9818.979081760755
+Avg acceptance rate: 0.021875000000000002
+Temperature: 24.342043087572698
+Runtime: 194.3996615409851
+remote chains time: 2.027047634124756
+set states time: 0.04463601112365723
+Step 93 / 201
+Best objective: -9758.124578989962
+Avg acceptance rate: 0.01875
+Temperature: 22.970548343462927
+Runtime: 196.51170134544373
+remote chains time: 2.031841516494751
+set states time: 0.04410433769226074
+Step 94 / 201
+Best objective: -9705.632902744019
+Avg acceptance rate: 0.0171875
+Temperature: 22.532252199459386
+Runtime: 198.6272406578064
+remote chains time: 2.0282883644104004
+set states time: 0.0457456111907959
+Step 95 / 201
+Best objective: -9622.01487020171
+Avg acceptance rate: 0.0153125
+Temperature: 22.453700624712795
+Runtime: 200.7419514656067
+remote chains time: 2.029414653778076
+set states time: 0.043802738189697266
+Step 96 / 201
+Best objective: -9563.653369007137
+Avg acceptance rate: 0.01375
+Temperature: 22.384287577794343
+Runtime: 202.85426473617554
+remote chains time: 2.0279698371887207
+set states time: 0.04713606834411621
+Step 97 / 201
+Best objective: -9539.797438681528
+Avg acceptance rate: 0.014687500000000001
+Temperature: 21.466350282749037
+Runtime: 204.97034406661987
+remote chains time: 2.029214859008789
+set states time: 0.04358100891113281
+Step 98 / 201
+Best objective: -9415.403488705528
+Avg acceptance rate: 0.012812500000000001
+Temperature: 21.408220166966807
+Runtime: 207.08377480506897
+remote chains time: 2.0273404121398926
+set states time: 0.043715476989746094
+Step 99 / 201
+Best objective: -9359.139095229733
+Avg acceptance rate: 0.0134375
+Temperature: 21.230095778125452
+Runtime: 209.19465470314026
+remote chains time: 2.028881788253784
+set states time: 0.04506039619445801
+Step 100 / 201
+Best objective: -9292.505868907934
+Avg acceptance rate: 0.014375
+Temperature: 21.05605333302145
+Runtime: 211.30791640281677
+remote chains time: 2.028437614440918
+set states time: 0.04364275932312012
+Step 101 / 201
+Best objective: -9232.80242006763
+Avg acceptance rate: 0.013437500000000002
+Temperature: 20.454717450871268
+Runtime: 213.42048931121826
+remote chains time: 2.0268683433532715
+set states time: 0.04405975341796875
+Step 102 / 201
+Best objective: -9160.983175901792
+Avg acceptance rate: 0.011875
+Temperature: 20.266423011758352
+Runtime: 215.53123497962952
+remote chains time: 2.026489734649658
+set states time: 0.04327583312988281
+Step 103 / 201
+Best objective: -9100.100099912619
+Avg acceptance rate: 0.0121875
+Temperature: 20.16467421089708
+Runtime: 217.64051342010498
+remote chains time: 2.0265414714813232
+set states time: 0.04224109649658203
+Step 104 / 201
+Best objective: -9040.96213358138
+Avg acceptance rate: 0.0109375
+Temperature: 20.148867959736634
+Runtime: 219.74828958511353
+remote chains time: 2.0270791053771973
+set states time: 0.04165816307067871
+Step 105 / 201
+Best objective: -8960.091918409347
+Avg acceptance rate: 0.01
+Temperature: 20.113088070976566
+Runtime: 221.85616064071655
+remote chains time: 2.027214527130127
+set states time: 0.0424342155456543
+Step 106 / 201
+Best objective: -8920.751945751203
+Avg acceptance rate: 0.009375000000000001
+Temperature: 19.690488195045376
+Runtime: 223.96800827980042
+remote chains time: 2.0294995307922363
+set states time: 0.04360222816467285
+Step 107 / 201
+Best objective: -8853.021802828516
+Avg acceptance rate: 0.0103125
+Temperature: 19.543620421623014
+Runtime: 226.0814709663391
+remote chains time: 2.0308244228363037
+set states time: 0.043294429779052734
+Step 108 / 201
+Best objective: -8808.887305170703
+Avg acceptance rate: 0.009375
+Temperature: 19.406576063146353
+Runtime: 228.1947979927063
+remote chains time: 2.026575803756714
+set states time: 0.046332359313964844
+Step 109 / 201
+Best objective: -8661.417356642396
+Avg acceptance rate: 0.01
+Temperature: 19.383523561669605
+Runtime: 230.3075089454651
+remote chains time: 2.0276243686676025
+set states time: 0.0449833869934082
+Step 110 / 201
+Best objective: -8640.023008571749
+Avg acceptance rate: 0.010000000000000002
+Temperature: 19.23693908035288
+Runtime: 232.41961765289307
+remote chains time: 2.0274200439453125
+set states time: 0.044830322265625
+Step 111 / 201
+Best objective: -8596.36785236798
+Avg acceptance rate: 0.0109375
+Temperature: 19.164209209261287
+Runtime: 234.5315659046173
+remote chains time: 2.0280020236968994
+set states time: 0.04513669013977051
+Step 112 / 201
+Best objective: -8501.204670826477
+Avg acceptance rate: 0.0103125
+Temperature: 19.119258292851697
+Runtime: 236.6461217403412
+remote chains time: 2.0323126316070557
+set states time: 0.04301333427429199
+Step 113 / 201
+Best objective: -8501.204670826477
+Avg acceptance rate: 0.009375000000000001
+Temperature: 0.05172472052026072
+Runtime: 238.76189541816711
+remote chains time: 2.0288264751434326
+set states time: 0.04602956771850586
+Step 114 / 201
+Best objective: -8400.2668049604
+Avg acceptance rate: 0.006562500000000001
+Temperature: 0.05172471992322397
+Runtime: 240.87748646736145
+remote chains time: 2.026641368865967
+set states time: 0.04754209518432617
+Step 115 / 201
+Best objective: -8378.272986054772
+Avg acceptance rate: 0.0053125
+Temperature: 0.05172471654467672
+Runtime: 242.9934365749359
+remote chains time: 2.027477979660034
+set states time: 0.045638322830200195
+Step 116 / 201
+Best objective: -8325.138853375774
+Avg acceptance rate: 0.004375
+Temperature: 0.05172471653737457
+Runtime: 245.1068778038025
+remote chains time: 2.0286524295806885
+set states time: 0.04773545265197754
+Step 117 / 201
+Best objective: -8263.524587374319
+Avg acceptance rate: 0.0034375000000000005
+Temperature: 0.051724716535140325
+Runtime: 247.22424626350403
+remote chains time: 2.0351767539978027
+set states time: 0.046042680740356445
+Step 118 / 201
+Best objective: -8225.869029354739
+Avg acceptance rate: 0.0040625
+Temperature: 0.05172471651573995
+Runtime: 249.34621596336365
+remote chains time: 2.0292932987213135
+set states time: 0.04498887062072754
+Step 119 / 201
+Best objective: -8220.436597292064
+Avg acceptance rate: 0.0037500000000000003
+Temperature: 0.05172471651573995
+Runtime: 251.46127820014954
+remote chains time: 2.0318961143493652
+set states time: 0.043524980545043945
+Step 120 / 201
+Best objective: -8213.389207940205
+Avg acceptance rate: 0.0034375000000000005
+Temperature: 0.05172471651573995
+Runtime: 253.5764398574829
+remote chains time: 2.0280778408050537
+set states time: 0.04528236389160156
+Step 121 / 201
+Best objective: -8169.129761592845
+Avg acceptance rate: 0.003125
+Temperature: 0.051724716510721754
+Runtime: 255.68888783454895
+remote chains time: 2.0279617309570312
+set states time: 0.05383419990539551
+Step 122 / 201
+Best objective: -8130.903480413426
+Avg acceptance rate: 0.0040625
+Temperature: 0.05172471648927199
+Runtime: 257.8122036457062
+remote chains time: 2.0277955532073975
+set states time: 0.04388833045959473
+Step 123 / 201
+Best objective: -8106.673704906869
+Avg acceptance rate: 0.0034374999999999996
+Temperature: 0.051724716227485625
+Runtime: 259.92343378067017
+remote chains time: 2.0266621112823486
+set states time: 0.04578423500061035
+Step 124 / 201
+Best objective: -8088.264817925081
+Avg acceptance rate: 0.00375

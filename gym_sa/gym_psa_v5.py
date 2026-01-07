@@ -40,14 +40,14 @@ class CloudpickleWrapper:
 
 
 def _worker(
-    receive_queue: mp.connection.Connection,
-    send_queue: mp.connection.Connection,
+    receive_queue,  #: mp.connection.Connection,
+    send_queue,  #: mp.connection.Connection,
     annealer_constructor: CloudpickleWrapper,
 ) -> None:
     # Import here to avoid a circular import
 
-    with open(f"worker_{os.getpid()}.log", "w") as f:
-        f.write(f"worker {os.getpid()} started\n")
+    # with open(f"worker_{os.getpid()}.log", "w") as f:
+    #     f.write(f"worker {os.getpid()} started\n")
 
     annealer = annealer_constructor.var()
     reset_info: Optional[dict[str, Any]] = {}
@@ -56,29 +56,29 @@ def _worker(
 
     while True:
         try:
-            with open(f"worker_{os.getpid()}.log", "a") as f:
-                f.write(f"=== WAITING FOR COMMAND ===\n")
-                f.flush()
+            # with open(f"worker_{os.getpid()}.log", "a") as f:
+            #     f.write(f"=== WAITING FOR COMMAND ===\n")
+            #     f.flush()
 
             cmd, data = receive_queue.get()
 
-            with open(f"worker_{os.getpid()}.log", "a") as f:
-                f.write(f"=== RECEIVED: {cmd} ===\n")
-                f.flush()
+            # with open(f"worker_{os.getpid()}.log", "a") as f:
+            #     f.write(f"=== RECEIVED: {cmd} ===\n")
+            #     f.flush()
 
             if cmd == "run_chain":
                 try:
                     result = _run_chain(annealer, data["n_steps"], data["seed"])
-                    with open(f"worker_{os.getpid()}.log", "a") as f:
-                        for r in result:
-                            f.write(f"{type(r)}--")
-                        f.write(f"\n")
+                    # with open(f"worker_{os.getpid()}.log", "a") as f:
+                    #     for r in result:
+                    #         f.write(f"{type(r)}--")
+                    #     f.write(f"\n")
                     send_queue.put(result)
 
                 except:
-                    with open(f"worker_{os.getpid()}.log", "a") as f:
-                        f.write(f"error in run_chain\n")
-                        traceback.print_exc(file=f)
+                    # with open(f"worker_{os.getpid()}.log", "a") as f:
+                    #     f.write(f"error in run_chain\n")
+                    #     traceback.print_exc(file=f)
                     send_queue.put(None)
 
             elif cmd == "reset":
@@ -86,15 +86,15 @@ def _worker(
                     annealer.reset()
                     send_queue.put(True)
                 except:
-                    with open(f"worker_{os.getpid()}.log", "a") as f:
-                        f.write(f"error in reset\n")
-                        traceback.print_exc(file=f)
+                    # with open(f"worker_{os.getpid()}.log", "a") as f:
+                    #     f.write(f"error in reset\n")
+                    #     traceback.print_exc(file=f)
                     send_queue.put(False)
 
             elif cmd == "set_state":
                 n += 1
-                with open(f"worker_{os.getpid()}.log", "a") as f:
-                    f.write(f"setting state for remote {n}\n")
+                # with open(f"worker_{os.getpid()}.log", "a") as f:
+                #     f.write(f"setting state for remote {n}\n")
                 try:
                     # with open(f"worker_{os.getpid()}.log", "a") as f:
                     #     f.write(f"setting state for remote {remote} {n}\n")
@@ -103,9 +103,9 @@ def _worker(
                     #     f.write(f"state set for remote {remote} {n}\n")
                     send_queue.put(True)
                 except:
-                    with open(f"worker_{os.getpid()}.log", "a") as f:
-                        f.write(f"error in set_state\n")
-                        traceback.print_exc(file=f)
+                    # with open(f"worker_{os.getpid()}.log", "a") as f:
+                    #     f.write(f"error in set_state\n")
+                    #     traceback.print_exc(file=f)
                     send_queue.put(False)
 
             elif cmd == "get_current_objective":
@@ -198,12 +198,19 @@ def _run_chain(
     if seed is not None:
         set_seed(seed)
 
+    best_objective = annealer.current_objective
+    best_state = copy.deepcopy(annealer.state)
+
     # Run the chain for n_steps
     for _ in range(n_steps):
         annealer.step()
+        if annealer.current_objective > best_objective:
+            best_objective = annealer.current_objective
+            best_state = copy.deepcopy(annealer.state)
 
     # Get final stats
-    best_state, best_objective = annealer.get_best_state()
+    # comment this line to use the best state ever found by that annealer
+    # best_state, best_objective = annealer.get_best_state()
     stats = annealer.get_stats()
     acceptance_rate = stats["mean_acceptance_rate"]
 
@@ -240,6 +247,7 @@ class ParallelAnnealer:
         save_progress: bool = False,
         load_file: str = None,
         load_progress: bool = False,
+        time_check: bool = False,
     ):
         """
         Initialize parallel simulated annealing with multiple chains.
@@ -274,6 +282,7 @@ class ParallelAnnealer:
         self.save_progress = save_progress
         self.load_file = load_file
         self.load_progress = load_progress
+        self.time_check = time_check
 
         self.debug_file = "psa_debug.txt"
         with open(self.debug_file, "w") as f:
@@ -347,6 +356,7 @@ class ParallelAnnealer:
             self.initial_temperature = self.temp_params["alpha"] * np.std(
                 initial_energy
             )
+            self.std = np.std(initial_energy)
             self.initial_temperature = max(
                 self.initial_temperature, self.temp_params["min_initial_temp"]
             )
@@ -356,16 +366,24 @@ class ParallelAnnealer:
             self.temperature = self.initial_temperature
 
         # Initialize logger
-        self.logger = CSVLogger(
-            log_file,
-            fieldnames=[
+        if self.temperature_schedule == "adaptive":
+            fieldnames = [
+                "step",
+                "best_objective",
+                "avg_acceptance_rate",
+                "std",
+                "temperature",
+                "runtime",
+            ]
+        else:
+            fieldnames = [
                 "step",
                 "best_objective",
                 "avg_acceptance_rate",
                 "temperature",
                 "runtime",
-            ],
-        )
+            ]
+        self.logger = CSVLogger(log_file, fieldnames=fieldnames)
 
         # Track best state across all chains
         self.global_best_state = None
@@ -623,9 +641,14 @@ class ParallelAnnealer:
 
         try:
             for step in range(n_outer_iterations):
+                begin_step_time = time.time()
                 # Run chains in parallel
                 self.log_debug(f"running chains in parallel")
                 results = self.run_remote_chains(self.mixing_frequency)
+                end_remote_chains_time = time.time()
+                remote_chains_time = end_remote_chains_time - begin_step_time
+                if self.time_check:
+                    print(f"remote chains time: {remote_chains_time}")
 
                 # get the output of the annealers
                 self.accepted_energies = [r[0] for r in results]
@@ -643,7 +666,9 @@ class ParallelAnnealer:
                         self.global_best_objective = obj
                 self.log_debug(f"global best updated")
                 # Log metrics
-                self._log_metrics(step, best_states, best_objectives, acceptance_rates)
+                self._log_metrics(
+                    step, best_states, best_objectives, acceptance_rates, self.std
+                )
                 self.log_debug(f"metrics logged")
                 # Check termination conditions
                 if self._should_terminate(step, acceptance_rates):
@@ -660,7 +685,12 @@ class ParallelAnnealer:
                     self.log_debug(f"error in mix_states")
                 # Update chain states for next iteration
                 self.log_debug(f"about to set states {n_set_states}")
+                begin_set_states_time = time.time()
                 self.set_state_remote_chains(new_states, new_objectives)
+                end_set_states_time = time.time()
+                set_states_time = end_set_states_time - begin_set_states_time
+                if self.time_check:
+                    print(f"set states time: {set_states_time}")
                 n_set_states += 1
                 self.log_debug(f"states updated {n_set_states}")
                 # update the temperature if adaptive
@@ -670,13 +700,20 @@ class ParallelAnnealer:
                     accepted_energies = np.concatenate(self.accepted_energies)
                     self.log_debug(f"accepted energies concatenated")
 
+                    # print(f"original temperature: {self.temperature}")
+                    # print(f"accepted energies: {accepted_energies}")
+                    # print(f"rho: {rho}")
+
                     # make sure there are some accepted energies
                     if len(accepted_energies) > 0:
                         sig = np.std(accepted_energies)
+                        # print(f"sig: {sig}")
+                        self.std = sig
                         self.log_debug(f"standard deviation calculated")
                         # make sure the standard deviation isn't zero
                         if sig > 1e-8:
                             G = (4 * rho * (1 - rho) ** 2) / (2 - rho) ** 2
+                            # print(f"G: {G}")
                             s_new = (
                                 s
                                 + self.temp_params["lambda"]
@@ -684,11 +721,14 @@ class ParallelAnnealer:
                                 * (1 / (s**2 * sig**2))
                                 * G
                             )
+                            # print(f"s_new: {s_new}")
                             self.temperature = max(1 / s_new, self.min_temperature)
                             self.log_debug(f"temperature updated")
+                            # print(f"new temperature: {self.temperature}")
+                            # input("Press Enter to continue...")
 
                     # clear the circular buffers (more efficient)
-                    # self.clear_accepted_energy_remote_chains()
+                    self.clear_accepted_energy_remote_chains()
                     self.log_debug(f"accepted energies cleared")
                     # set the temperature for each annealer
                     self.set_temperature_remote_chains(self.temperature)
@@ -795,15 +835,26 @@ class ParallelAnnealer:
         best_states: List[Any],
         best_objectives: List[float],
         acceptance_rates: List[float],
+        std: float = 0,
     ) -> None:
         """Log global metrics to CSV file."""
-        metrics = {
-            "step": step,
-            "best_objective": np.round(self.global_best_objective, 2),
-            "avg_acceptance_rate": np.round(np.mean(acceptance_rates), 2),
-            "temperature": np.round(self.temperature, 2),
-            "runtime": np.round(time.time() - self.start_time, 2),
-        }
+        if self.temperature_schedule == "adaptive":
+            metrics = {
+                "step": step,
+                "best_objective": np.round(self.global_best_objective, 4),
+                "avg_acceptance_rate": np.round(np.mean(acceptance_rates), 4),
+                "std": np.round(std, 4),
+                "temperature": np.round(self.temperature, 4),
+                "runtime": np.round(time.time() - self.start_time, 4),
+            }
+        else:
+            metrics = {
+                "step": step,
+                "best_objective": np.round(self.global_best_objective, 4),
+                "avg_acceptance_rate": np.round(np.mean(acceptance_rates), 4),
+                "temperature": np.round(self.temperature, 4),
+                "runtime": np.round(time.time() - self.start_time, 4),
+            }
         self.logger.log(metrics)
 
 

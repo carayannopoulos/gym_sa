@@ -4,6 +4,8 @@ from gym_sa.tsp_env import TSPEnv
 import pandas as pd
 import matplotlib.pyplot as plt
 import time
+import os
+import sys
 
 
 def main(
@@ -40,6 +42,7 @@ def main(
         base_seed=base_seed,
         log_file=log_file,
         verbose=verbose,
+        time_check=True,
     )
 
     # Run parallel annealing
@@ -83,15 +86,15 @@ if __name__ == "__main__":
         "env_params": env_params,
     }
 
-    total_steps = 20000
-    n_chains = 1
+    total_steps = 4000
+    n_chains = 32
     n_steps = total_steps  # // n_chains
     initial_temperature = 200
     cooling_rate = 0.9999
     min_temperature = 0.00001
-    mixing_frequency = 60
+    mixing_frequency = 20
     min_acceptance_rate = -1
-    max_runtime = 1 * 60
+    max_runtime = 1000 * 60
     base_seed = 42
     # temperature_schedule = "geometric"
     # temp_params = {}
@@ -101,10 +104,18 @@ if __name__ == "__main__":
 
     n_its = 1
     best_objectives = []
+
+    current_dir = os.getcwd()
+    case_dir = os.path.join(current_dir, "scaling", f"{n_chains}chains")
+    print(f"Case directory: {case_dir}")
+    os.makedirs(case_dir, exist_ok=True)
+    print(f"n_chains: {n_chains}")
+
     for i in range(n_its):
         print(f"Iteration {i+1} of {n_its}")
         best_objective = main(
             n_chains=n_chains,
+            log_file=os.path.join(case_dir, f"log_{i+1}.csv"),
             env_params=env_params,
             max_steps=n_steps,
             initial_temperature=initial_temperature,
@@ -116,46 +127,3 @@ if __name__ == "__main__":
             verbose=verbose,
         )
         best_objectives.append(best_objective)
-
-    best_objectives_mean = np.mean(best_objectives)
-    best_objectives_std = np.std(best_objectives)
-
-    print(f"Best objective: {best_objectives_mean:.4f} ± {best_objectives_std:.4f}")
-
-    df = pd.read_csv("test_log.csv")
-
-    # Create figure with two subplots
-    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 5))
-
-    # Plot best objective
-    ax1.plot(df["step"], -df["best_objective"], label=f"n_chains={n_chains}")
-    ax1.set_ylabel("Best Objective")
-    ax1.set_xlabel("Step")
-    ax1.set_yscale("log")
-    ax1.legend()
-    ax1.grid(True)
-
-    # Plot acceptance rate and temperature
-    ax2_temp = ax2.twinx()
-
-    # Plot acceptance rate on left y-axis
-    ax2.plot(df["step"], df["avg_acceptance_rate"], "g-", label=f"n_chains={n_chains}")
-    ax2.set_ylabel("Acceptance Rate", color="g")
-    ax2.tick_params(axis="y", labelcolor="g")
-
-    # Plot temperature on right y-axis
-    ax2_temp.plot(df["step"], df["temperature"], "r-", label=f"n_chains={n_chains}")
-    ax2_temp.set_ylabel("Temperature", color="r")
-    ax2_temp.tick_params(axis="y", labelcolor="r")
-
-    # Add legend
-    lines1, labels1 = ax2.get_legend_handles_labels()
-    lines2, labels2 = ax2_temp.get_legend_handles_labels()
-    ax2.legend(lines1 + lines2, labels1 + labels2, loc="upper right")
-
-    ax2.set_xlabel("Step")
-    ax2.grid(True)
-
-    plt.tight_layout()
-    # plt.savefig("test_parallel_annealer.png")
-    plt.show()
