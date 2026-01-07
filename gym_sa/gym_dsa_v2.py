@@ -3,7 +3,7 @@ import time
 from typing import Callable, Optional, Tuple, Any, List, Dict
 import numpy as np
 import cloudpickle
-
+from .job_manager import JobManager
 from .annealer import Annealer
 from .utils import softmax, set_seed
 from .logger import CSVLogger
@@ -23,13 +23,14 @@ from .sa_rolloutworker import SA_RolloutWorker
 import ray
 
 
-class DistributedAnnealer:
+class DistributedAnnealer_batch:
     def __init__(
         self,
         runtime_env: Dict,
         env_constructor: Callable,
         env_params: Dict,
         n_chains: int,
+        job_manager_kwargs: Dict,
         ray_address: str = "auto",
         temperature_schedule: str = "geometric",
         temp_params: Dict = None,
@@ -85,11 +86,11 @@ class DistributedAnnealer:
         self.save_progress = save_progress
         self.load_file = load_file
         self.load_progress = load_progress
-        self.restart = restart
+        self.job_manager_kwargs = job_manager_kwargs
         self.debug_file = "dsa_debug.txt"
         with open(self.debug_file, "w") as f:
             f.write(f"DSA debug:\n")
-
+        self.restart = restart
         self.env_params_list = []
         for i in range(self.n_chains):
             e = copy.deepcopy(env_params)
@@ -146,16 +147,16 @@ class DistributedAnnealer:
         Initialize Ray and spawn rollout workers.
         """
         print(f"Initializing Ray at address={self.ray_address} ...")
-        if not ray.is_initialized():
-            ray.init(
-                address=self.ray_address,
-                ignore_reinit_error=True,
-                runtime_env=self.runtime_env,
-            )
-            self.owns_ray = True
-        else:
-            print("Ray already initialized")
-            self.owns_ray = False
+        ray.init(
+            # address=self.ray_address,
+            local_mode=True,
+            ignore_reinit_error=True,
+            runtime_env=self.runtime_env,
+        )
+
+        self.job_manager = JobManager.remote(**self.job_manager_kwargs)
+        for e in self.env_params_list:
+            e["job_manager"] = self.job_manager
 
         print(f"Spawning {self.n_chains} rollout workers ...")
         self.workers = [
@@ -414,8 +415,6 @@ class DistributedAnnealer:
                 self.log_debug(f"save for restart")
 
         self.log_debug(f"run completed")
-        if self.owns_ray:
-            ray.shutdown()
         return self.global_best_state, self.global_best_objective
 
     def _should_terminate(self, step: int, acceptance_rates: List[float]) -> bool:
@@ -442,9 +441,9 @@ class DistributedAnnealer:
         """Log global metrics to CSV file."""
         metrics = {
             "step": step,
-            "best_objective": np.round(self.global_best_objective, 5),
-            "avg_acceptance_rate": np.round(np.mean(acceptance_rates), 4),
-            "temperature": np.round(self.temperature, 7),
-            "runtime": np.round(time.time() - self.start_time, 4),
+            "best_objective": np.round(self.global_best_objective, 2),
+            "avg_acceptance_rate": np.round(np.mean(acceptance_rates), 2),
+            "temperature": np.round(self.temperature, 2),
+            "runtime": np.round(time.time() - self.start_time, 2),
         }
         self.logger.log(metrics)

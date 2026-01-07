@@ -19,18 +19,22 @@ import fcntl
 import termios
 import array
 
+import mpi4py
+from mpi4py import MPI
+
 from .sa_rolloutworker import SA_RolloutWorker
 import ray
 
 
-class DistributedAnnealer:
+comm = MPI.COMM_WORLD
+rank = comm.Get_rank()
+size = comm.Get_size()
+
+class DistributedAnnealer_MPI:
     def __init__(
         self,
-        runtime_env: Dict,
         env_constructor: Callable,
         env_params: Dict,
-        n_chains: int,
-        ray_address: str = "auto",
         temperature_schedule: str = "geometric",
         temp_params: Dict = None,
         initial_temperature: float = 1.0,
@@ -66,10 +70,8 @@ class DistributedAnnealer:
             base_seed: Base seed for random number generation
             log_file: Path to CSV file for logging metrics
         """
-        self.runtime_env = runtime_env
-        self.ray_address = ray_address
         self.env_constructor = env_constructor
-        self.n_chains = n_chains
+        self.n_chains = size
         self.temperature_schedule = temperature_schedule
         self.temp_params = temp_params
         self.initial_temperature = initial_temperature
@@ -90,13 +92,10 @@ class DistributedAnnealer:
         with open(self.debug_file, "w") as f:
             f.write(f"DSA debug:\n")
 
-        self.env_params_list = []
-        for i in range(self.n_chains):
-            e = copy.deepcopy(env_params)
-            e["rank"] = i
-            self.env_params_list.append(e)
+        self.env_params = env_params
+        self.env_params["rank"] = rank
 
-        self.init_ray()
+        self.init_chains()
 
         # Initialize random number generator
         self.rng = np.random.default_rng(base_seed)
@@ -104,148 +103,121 @@ class DistributedAnnealer:
         # if adaptive cooling, initialize temperature
         # from D. Kropaczek, “COPERNICUS: A multi-cycle optimization code for nuclear fuel based on parallel simulated annealing with mixing of states,” Progress in Nuclear Energy.
         if self.temperature_schedule == "adaptive":
-            initial_energy = self.get_current_objective_remote_chains()
-            # print(f"initial_energy: {initial_energy}")
-            self.initial_temperature = self.temp_params["alpha"] * np.std(
-                initial_energy
-            )
-            self.initial_temperature = max(
-                self.initial_temperature, self.temp_params["min_initial_temp"]
-            )
-            self.temperature = self.initial_temperature
+            initial_energy = self.get_current_objectives()
+            if rank == 0:
+                # print(f"initial_energy: {initial_energy}")
+                self.initial_temperature = self.temp_params["alpha"] * np.std(
+                    initial_energy
+                )
+                self.initial_temperature = max(
+                    self.initial_temperature, self.temp_params["min_initial_temp"]
+                )
+
+            else:
+                self.initial_temperature = None
+
+            self.set_temperature(self.initial_temperature)
 
         else:
             self.temperature = self.initial_temperature
 
         # Initialize logger
-        self.logger = CSVLogger(
-            log_file,
-            fieldnames=[
-                "step",
-                "best_objective",
-                "avg_acceptance_rate",
-                "temperature",
-                "runtime",
-            ],
-            restart=self.restart,
-        )
+        if rank == 0:
+            self.logger = CSVLogger(
+                log_file,
+                fieldnames=[
+                    "step",
+                    "best_objective",
+                    "avg_acceptance_rate",
+                    "temperature",
+                    "runtime",
+                ],
+                restart=self.restart,
+            )
 
         # Track best state across all chains
         self.global_best_state = None
         self.global_best_objective = float("-inf")
 
         # Track start time for runtime monitoring
-        self.start_time = None
+        self.start_time = MPI.Wtime()
 
         if self.load_progress:
             self.load_for_restart()
             # print("self.temperature: ", self.temperature)
 
-    def init_ray(self):
+    def init_chains(self):
         """
-        Initialize Ray and spawn rollout workers.
+        Initialize sa chains.
         """
-        print(f"Initializing Ray at address={self.ray_address} ...")
-        if not ray.is_initialized():
-            ray.init(
-                address=self.ray_address,
-                ignore_reinit_error=True,
-                runtime_env=self.runtime_env,
-            )
-            self.owns_ray = True
-        else:
-            print("Ray already initialized")
-            self.owns_ray = False
-
-        print(f"Spawning {self.n_chains} rollout workers ...")
-        self.workers = [
-            SA_RolloutWorker.remote(
+        if rank == 0:
+            print(f"Initializing {self.n_chains} sa chains ...")
+        self.sa_chain = SA_RolloutWorker(
                 self.env_constructor,
-                env_params=self.env_params_list[i],
+                env_params=self.env_params,
                 temperature_schedule=self.temperature_schedule,
                 initial_temperature=self.initial_temperature,
                 cooling_rate=self.cooling_rate,
                 min_temperature=self.min_temperature,
                 verbose=False,
             )
-            for i in range(self.n_chains)
-        ]
 
-        ray.get([w.ping.remote() for w in self.workers])
-
-        self.reset_remote_chains()
-
-    def __del__(self):
-        """Destructor to ensure cleanup happens even if object is garbage collected."""
-        try:
-            self._cleanup_workers()
-        except:
-            pass  # Ignore errors during cleanup in destructor
+        self.sa_chain.reset()
 
     def log_debug(self, message):
         with open(self.debug_file, "a") as f:
             f.write(f"{message}\n")
 
-    def get_current_objective_remote_chains(self):
+    def get_current_objectives(self):
         """
-        Get the current objective of the chains in the remote processes.
+        Get the current objective of the chains.
         """
-        obj_refs = [worker.get_current_objective.remote() for worker in self.workers]
+        obj = self.sa_chain.get_current_objective()
+        objectives = comm.gather(obj, root=0)
 
-        return ray.get(obj_refs)
+        if rank == 0:
+            return objectives
+        else:
+            return None
 
-    def run_remote_chains(self, n_steps: int, seed: int = None):
-        """
-        Run the chains in the remote processes.
-        """
-        self.log_debug(f"running chains in parallel")
-        refs = []
-        for worker in self.workers:
-            refs.append(worker.run_chain.remote(n_steps, seed))
-        self.log_debug(f"waiting for chains to finish")
-        results = ray.get(refs)
-        return results
 
-    def reset_remote_chains(self):
-        """
-        Reset the chains in the remote processes.
-        """
-
-        ray.get([worker.reset.remote() for worker in self.workers])
-
-        return True
-
-    def set_state_remote_chains(self, states: List[Any], objectives: List[float]):
+    def set_states(self, states: List[Any], objectives: List[float]):
         """
         Set the state of the chains in the remote processes.
         """
 
-        ray.get(
-            [
-                worker.set_state.remote(state, objective)
-                for worker, state, objective in zip(self.workers, states, objectives)
-            ]
-        )
+        if rank == 0:
+            pairs = list(zip(states, objectives))
+
+        else:
+            pairs = None
+
+        pair = comm.scatter(pairs, root=0)
+        self.sa_chain.set_state(pair[0], pair[1])
 
         return True
 
-    def set_temperature_remote_chains(self, temperature: float):
+    def set_temperature(self, temperature: float):
         """
         Set the temperature of the chains in the remote processes.
         """
-        ray.get([worker.set_temperature.remote(temperature) for worker in self.workers])
+        temp = comm.bcast(temperature, root=0)
+        self.temperature = temp
 
         return True
 
-    def get_temperature_remote_chains(self):
+    def get_temperature(self):
         """
         Get the temperature of the chains in the remote processes.
         """
-        return ray.get([worker.get_temperature.remote() for worker in self.workers])
+        if rank == 0:
+            return comm.gather(self.temperature, root=0)
+        else:
+            return None
 
-    def clear_accepted_energy_remote_chains(self):
+    def clear_accepted_energy(self):
 
-        ray.get([worker.clear_accepted_energy.remote() for worker in self.workers])
+        self.sa_chain.clear_accepted_energy()
 
         return True
 
@@ -253,26 +225,38 @@ class DistributedAnnealer:
         """
         Save the states, objectives, and temperature for restart.
         """
-        save_dict = {
-            "states": states,
-            "objectives": objectives,
-            "temperature": temperature,
-        }
-        with open(self.save_file, "wb") as f:
-            pickle.dump(save_dict, f)
+        if rank == 0:
+            save_dict = {
+                "states": states,
+                "objectives": objectives,
+                "temperature": temperature,
+            }
+            with open(self.save_file, "wb") as f:
+                pickle.dump(save_dict, f)
 
-        return save_dict
+            return save_dict
+        else:
+            raise ValueError("Only rank 0 can save for restart")
 
     def load_for_restart(self):
         """
         Load the states, objectives, and temperature for restart.
         """
-        with open(self.load_file, "rb") as f:
-            save_dict = pickle.load(f)
+        if rank == 0:
+            with open(self.load_file, "rb") as f:
+                save_dict = pickle.load(f)
 
-        self.temperature = save_dict["temperature"]
+            self.temperature = save_dict["temperature"]
 
-        self.set_state_remote_chains(save_dict["states"], save_dict["objectives"])
+        else:
+            self.temperature = None
+            save_dict = {"states": None, "objectives": None, "temperature": None}
+
+        self.set_states(save_dict["states"], save_dict["objectives"])
+        self.set_temperature(self.temperature)
+
+        return True
+
 
     def _mix_states(
         self, best_states: List[Any], best_objectives: List[float]
@@ -306,6 +290,27 @@ class DistributedAnnealer:
         self.log_debug(f"new objectives: {new_objectives}")
         return new_states, new_objectives
 
+    def run_chains(self, n_steps: int):
+        """
+        Run the chains in the remote processes.
+        """
+        result = self.sa_chain.run_chain(n_steps)
+        accepted_energy = result[0]
+        best_state = result[1]
+        best_objective = result[2]
+        acceptance_rate = result[3]
+        current_state = result[4]
+        current_objective = result[5]
+
+        accepted_energies = comm.gather(accepted_energy, root=0)
+        best_states = comm.gather(best_state, root=0)
+        best_objectives = comm.gather(best_objective, root=0)
+        acceptance_rates = comm.gather(acceptance_rate, root=0)
+        current_states = comm.gather(current_state, root=0)
+        current_objectives = comm.gather(current_objective, root=0)
+
+        return (accepted_energies, best_states, best_objectives, acceptance_rates, current_states, current_objectives)
+
     def run(self) -> Tuple[Any, float]:
         """
         Run the parallel annealing process until termination.
@@ -313,10 +318,10 @@ class DistributedAnnealer:
         Returns:
             Tuple of (best_state, best_objective) found across all chains
         """
-        self.start_time = time.time()
+        self.start_time = MPI.Wtime()
         self.log_debug(f"beginning of run")
         # compute the number of outer iterations
-        n_outer_iterations = self.max_steps // self.mixing_frequency + 1
+        n_outer_iterations = self.max_steps // self.mixing_frequency if self.max_steps % self.mixing_frequency == 0 else self.max_steps // self.mixing_frequency + 1
 
         n_set_states = 0
 
@@ -326,76 +331,104 @@ class DistributedAnnealer:
             results = self.run_remote_chains(self.mixing_frequency)
 
             # get the output of the annealers
-            self.accepted_energies = [r[0] for r in results]
-            # print(f"accepted_energies: {self.accepted_energies}")
-            best_states = [r[1] for r in results]
-            best_objectives = [r[2] for r in results]
-            acceptance_rates = [r[3] for r in results]
-            current_states = [r[4] for r in results]
-            current_objectives = [r[5] for r in results]
-            self.log_debug(f"output of chains obtained")
-            # Update global best
-            for state, obj in zip(best_states, best_objectives):
-                if obj > self.global_best_objective:
-                    self.global_best_state = state
-                    self.global_best_objective = obj
-            self.log_debug(f"global best updated")
-            # Log metrics
-            self._log_metrics(step, best_states, best_objectives, acceptance_rates)
-            self.log_debug(f"metrics logged")
+            if rank == 0:
+
+                self.accepted_energies = [r[0] for r in results]
+                # print(f"accepted_energies: {self.accepted_energies}")
+                best_states = [r[1] for r in results]
+                best_objectives = [r[2] for r in results]
+                acceptance_rates = [r[3] for r in results]
+                current_states = [r[4] for r in results]
+                current_objectives = [r[5] for r in results]
+
+                self.log_debug(f"output of chains obtained")
+                # Update global best
+                for state, obj in zip(best_states, best_objectives):
+                    if obj > self.global_best_objective:
+                        self.global_best_state = state
+                        self.global_best_objective = obj
+                self.log_debug(f"global best updated")
+
+                # Log metrics
+                self._log_metrics(step, best_states, best_objectives, acceptance_rates)
+                self.log_debug(f"metrics logged")
+
             # Check termination conditions
-            if self._should_terminate(step, acceptance_rates):
+            if rank == 0:
+                term = self._should_terminate(step, acceptance_rates)
+
+            else:
+                term = None
+
+            terminate = comm.bcast(term, root=0)
+
+            if terminate:
                 break
             self.log_debug(f"termination conditions checked")
+
             # mix the states
-            try:
-                self.log_debug(f"about to mix states")
-                new_states, new_objectives = self._mix_states(
-                    best_states, best_objectives
-                )
-                self.log_debug(f"states mixed")
-            except:
-                self.log_debug(f"error in mix_states")
+            if rank == 0:
+                try:
+                    self.log_debug(f"about to mix states")
+                    new_states, new_objectives = self._mix_states(
+                        best_states, best_objectives
+                    )
+                    self.log_debug(f"states mixed")
+                except:
+                    self.log_debug(f"error in mix_states")
+
+            else:
+                new_states = None
+                new_objectives = None
+
+
             # Update chain states for next iteration
             self.log_debug(f"about to set states {n_set_states}")
-            self.set_state_remote_chains(new_states, new_objectives)
+            self.set_states(new_states, new_objectives)
             n_set_states += 1
             self.log_debug(f"states updated {n_set_states}")
+
             # update the temperature if adaptive
             if self.temperature_schedule == "adaptive":
-                s = 1 / self.temperature
-                rho = np.mean(acceptance_rates)
-                accepted_energies = np.concatenate(self.accepted_energies)
-                self.log_debug(f"accepted energies concatenated")
+                if rank == 0:
+                    s = 1 / self.temperature
+                    rho = np.mean(acceptance_rates)
+                    accepted_energies = np.concatenate(self.accepted_energies)
+                    self.log_debug(f"accepted energies concatenated")
 
-                # make sure there are some accepted energies
-                if len(accepted_energies) > 0:
-                    sig = np.std(accepted_energies)
-                    self.log_debug(f"standard deviation calculated")
-                    # make sure the standard deviation isn't zero
-                    if sig > 1e-8:
-                        G = (4 * rho * (1 - rho) ** 2) / (2 - rho) ** 2
-                        s_new = (
-                            s
-                            + self.temp_params["lambda"]
-                            * (1 / sig)
-                            * (1 / (s**2 * sig**2))
-                            * G
-                        )
-                        self.temperature = max(1 / s_new, self.min_temperature)
-                        self.log_debug(f"temperature updated")
+                    # make sure there are some accepted energies
+                    if len(accepted_energies) > 0:
+                        sig = np.std(accepted_energies)
+                        self.log_debug(f"standard deviation calculated")
+                        # make sure the standard deviation isn't zero
+                        if sig > 1e-8:
+                            G = (4 * rho * (1 - rho) ** 2) / (2 - rho) ** 2
+                            s_new = (
+                                s
+                                + self.temp_params["lambda"]
+                                * (1 / sig)
+                                * (1 / (s**2 * sig**2))
+                                * G
+                            )
+                            temperature = max(1 / s_new, self.min_temperature)
+                            self.log_debug(f"temperature updated")
+
+                else:
+                    temperature = None
+
 
                 # clear the circular buffers (more efficient)
-                # self.clear_accepted_energy_remote_chains()
+                self.clear_accepted_energy()
                 self.log_debug(f"accepted energies cleared")
                 # set the temperature for each annealer
-                self.set_temperature_remote_chains(self.temperature)
+                self.set_temperature(temperature)
                 self.log_debug(f"temperature set for each annealer")
+
             elif self.temperature_schedule == "geometric":
-                self.temperature = self.get_temperature_remote_chains()[0]
+                self.temperature = self.get_temperature()[0]
                 self.log_debug(f"temperature set for each annealer")
             # Summarize step
-            if self.verbose:
+            if self.verbose and rank == 0:
                 print(f"Step {step+1} / {n_outer_iterations}")
                 print(f"Best objective: {self.global_best_objective}")
                 print(f"Avg acceptance rate: {np.mean(acceptance_rates)}")
@@ -406,17 +439,16 @@ class DistributedAnnealer:
                         f"Temperature: {self.initial_temperature * (self.cooling_rate ** (step * self.mixing_frequency))}"
                     )
                 print(f"Runtime: {time.time() - self.start_time}")
-            self.log_debug(f"step summarized")
-            if self.save_progress and step % self.save_freq == 0:
+                self.log_debug(f"step summarized")
+
+            if self.save_progress and step % self.save_freq == 0 and rank == 0:
                 self.save_for_restart(
                     current_states, current_objectives, self.temperature
                 )
                 self.log_debug(f"save for restart")
 
-        self.log_debug(f"run completed")
-        if self.owns_ray:
-            ray.shutdown()
-        return self.global_best_state, self.global_best_objective
+        if rank == 0:
+            return self.global_best_state, self.global_best_objective
 
     def _should_terminate(self, step: int, acceptance_rates: List[float]) -> bool:
         """Check if we should terminate the annealing process."""

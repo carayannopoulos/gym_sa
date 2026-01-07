@@ -3,7 +3,7 @@ import os
 
 
 class CSVLogger:
-    def __init__(self, filename, fieldnames):
+    def __init__(self, filename, fieldnames, restart: bool = False):
         """
         Initialize the CSV logger. Writes headers if the file does not exist.
         Args:
@@ -13,10 +13,10 @@ class CSVLogger:
         self.filename = filename
         self.fieldnames = fieldnames
         file_exists = os.path.isfile(filename)
-
-        with open(filename, mode="w", newline="") as csvfile:
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-            writer.writeheader()
+        if not restart and file_exists:
+            with open(filename, mode="w", newline="") as csvfile:
+                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                writer.writeheader()
 
     def log(self, row_dict):
         """
